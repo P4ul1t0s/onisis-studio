@@ -54,10 +54,11 @@ app.post(
       async function runModel(images, prompt) {
         const output = await replicate.run("black-forest-labs/flux-2-pro", {
           input: {
-            prompt,
-            input_images: images,
-            output_format: "jpg",
-          },
+          prompt,
+          input_images: images,
+          output_format: "jpg",
+          aspect_ratio: "4:3"
+        },
         });
 
         const file = Array.isArray(output) ? output[0] : output;

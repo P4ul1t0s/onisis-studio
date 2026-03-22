@@ -80,37 +80,51 @@ A realistic, premium car interior photo with professional studio lighting.
 `.trim();
 
 export const CLOSEUP_PROMPT = `
-You will receive a close-up image of a car detail.
+You will receive a close-up image of a car detail that is still attached to the vehicle.
 
 Task:
-Enhance this image to look like a premium professional automotive studio detail photograph.
+Transform this image into a professional automotive studio close-up while preserving the exact original condition of the object.
+
+CRITICAL CONDITION LOCK:
+- The condition of the object must remain EXACTLY the same as the input.
+- Do not add any new elements or details.
+- Do not introduce dirt, mud, dust, stains, rust, scratches, or wear.
+- Do not exaggerate any existing imperfections.
+- Do not change surface cleanliness in any way.
+- The output must match the original condition pixel-wise in terms of cleanliness.
 
 Preservation:
-- Keep the subject exactly the same.
-- Preserve the original shape, color, branding, material, texture, and all visible details.
-- Do not redesign, repair, clean, or modify the part.
-- Do not remove imperfections, dust, wear, scratches, or texture.
+- Keep shape, color, materials, reflections, and details identical.
+- Keep the object attached to the vehicle.
+- Do not redesign, enhance, or modify anything.
+
+Composition:
+- Preserve original framing, crop, angle, and perspective.
+- Do not move, isolate, extract, or reposition any part.
+
+Background:
+- Replace the background with a clean white studio environment.
+- Keep transitions subtle and natural.
+- Do not create a floating object.
+- Do not invent missing geometry.
 
 Lighting:
-- Apply realistic professional studio lighting suitable for automotive detail photography.
-- Use soft controlled highlights and realistic reflections.
-- Improve clarity while maintaining natural contrast and material realism.
-- Keep lighting physically plausible.
+- Apply soft white studio lighting.
+- Improve reflections and highlights while preserving realism.
+- Keep materials physically accurate.
 
 Style:
-- Premium car catalog detail photography.
-- Crisp, sharp, realistic, and clean.
+- Clean automotive studio photography.
 - Neutral white balance.
-- Rich but natural contrast.
-- Preserve realism for chrome, paint, plastic, leather, rubber, glass, carbon fiber, and metal surfaces.
+- Crisp, sharp, realistic.
+- CLEAN presentation (no dirt, no grime, no environmental effects).
 
-Avoid:
-- Do not insert a fake environment.
-- Do not add objects.
-- Do not change framing or perspective.
-- Do not create an overprocessed or CGI look.
-- Do not create washed-out, hazy, faded, or low-contrast output.
+STRICTLY FORBIDDEN:
+- Any new dirt, mud, dust, stains, or damage.
+- Any environmental storytelling (off-road, road dust, etc).
+- Any change in cleanliness level.
+- Any added texture that was not present in the original.
 
 Output:
-A realistic professional studio-style automotive close-up image.
+A clean studio close-up with identical condition and no added imperfections.
 `.trim();
