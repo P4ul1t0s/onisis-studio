@@ -9,6 +9,8 @@ import {
   CLOSEUP_PROMPT,
 } from "./prompts.js";
 
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -121,6 +123,6 @@ app.post(
   }
 );
 
-app.listen(3000, () => {
-  console.log("http://localhost:3000");
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
