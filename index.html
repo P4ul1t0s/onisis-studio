@@ -7,284 +7,107 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
+  <div class="site-shell">
+    <header class="landing-header">
       <div class="brand">
-        <div class="brand-icon">🚗</div>
-        <div class="brand-name">Onisis</div>
+        <div class="brand-mark">O</div>
+        <div>
+          <h1>Onisis Studio AI</h1>
+          <p>Imagens automotivas com aparência de estúdio profissional</p>
+        </div>
       </div>
-      <p class="hero-subtitle">
-        Transforme fotos de carros em imagens de estúdio profissional — com IA
-      </p>
+      <a href="/app.html" class="nav-cta">Começar</a>
     </header>
 
-    <main class="main">
-      <section class="usage-card">
-        <h2>Como usar</h2>
-        <p>
-          Envie as fotos separando por categoria: externas, internas e close-ups.
-          Você pode selecionar várias imagens em cada campo, com limite total de
-          10 fotos por processamento.
-        </p>
-        <p>
-          A qualidade da foto original afeta diretamente o resultado final.
-          Imagens nítidas, bem iluminadas, sem desfoque e com bom enquadramento
-          produzem resultados muito melhores.
-        </p>
+    <main class="landing-main">
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <span class="eyebrow">Ferramenta visual para concessionárias e vendedores</span>
+          <h2>Fotos melhores geram anúncios mais fortes.</h2>
+          <p>
+            Transforme imagens comuns de veículos em fotos com aparência de estúdio,
+            de forma simples, rápida e intuitiva.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/app.html" class="primary-btn link-btn">Começar agora</a>
+            <a href="#como-funciona" class="secondary-btn link-btn">Entender como funciona</a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="stat-card">
+            <strong>Processamento em lote</strong>
+            <span>Envie até 10 imagens por vez</span>
+          </div>
+          <div class="stat-card">
+            <strong>Fluxo simples</strong>
+            <span>Externas, internas e close-ups</span>
+          </div>
+          <div class="stat-card">
+            <strong>Tempo médio</strong>
+            <span>Cerca de 15–20 segundos por imagem</span>
+          </div>
+        </div>
       </section>
 
-      <section class="upload-grid">
-        <label class="upload-card" for="exteriorInput">
-          <div class="upload-icon">📸</div>
-          <h3>Fotos Externas</h3>
-          <p>Arraste ou clique para enviar (JPEG, PNG, WebP)</p>
-          <input type="file" id="exteriorInput" multiple accept="image/jpeg,image/png,image/webp" hidden />
-        </label>
+      <section class="feature-grid" id="como-funciona">
+        <article class="feature-card">
+          <div class="feature-icon">🚘</div>
+          <h3>Exteriores</h3>
+          <p>
+            Fotos do veículo por fora, com visual mais profissional e apresentação
+            mais forte para anúncio.
+          </p>
+        </article>
 
-        <label class="upload-card" for="interiorInput">
-          <div class="upload-icon">🪑</div>
-          <h3>Fotos Internas</h3>
-          <p>Arraste ou clique para enviar (JPEG, PNG, WebP)</p>
-          <input type="file" id="interiorInput" multiple accept="image/jpeg,image/png,image/webp" hidden />
-        </label>
+        <article class="feature-card">
+          <div class="feature-icon">🪑</div>
+          <h3>Interiores</h3>
+          <p>
+            Painel, bancos, cabine e acabamentos com iluminação mais limpa e visual
+            premium.
+          </p>
+        </article>
 
-        <label class="upload-card" for="closeupInput">
-          <div class="upload-icon">🔎</div>
+        <article class="feature-card">
+          <div class="feature-icon">🔍</div>
           <h3>Close-ups</h3>
-          <p>Arraste ou clique para enviar (JPEG, PNG, WebP)</p>
-          <input type="file" id="closeupInput" multiple accept="image/jpeg,image/png,image/webp" hidden />
-        </label>
+          <p>
+            Destaque de rodas, faróis, detalhes, texturas e acabamentos com aparência
+            refinada.
+          </p>
+        </article>
       </section>
 
-      <section class="summary-panel">
-        <div class="summary-top">
-          <span>Total selecionado</span>
-          <strong id="totalCounter">0/10</strong>
+      <section class="info-strip">
+        <div class="info-block">
+          <h4>Como usar</h4>
+          <p>
+            Separe as fotos por categoria, envie os arquivos e gere tudo em lote.
+          </p>
         </div>
-        <div class="summary-hint" id="summaryHint">
-          Selecione pelo menos 1 imagem para habilitar o processamento.
+        <div class="info-block">
+          <h4>Qualidade das imagens</h4>
+          <p>
+            Fotos nítidas, bem iluminadas e com bom enquadramento geram resultados
+            muito melhores.
+          </p>
         </div>
-      </section>
-
-      <div class="actions">
-        <button id="processBtn" class="primary-btn" disabled title="">
-          Processar com IA
-        </button>
-      </div>
-
-      <section class="preview-section">
-        <div class="section-header">
-          <h2>Prévia das imagens selecionadas</h2>
-        </div>
-
-        <div class="preview-group">
-          <h4>Externas</h4>
-          <div class="image-grid preview-grid" id="exteriorPreview"></div>
-        </div>
-
-        <div class="preview-group">
-          <h4>Internas</h4>
-          <div class="image-grid preview-grid" id="interiorPreview"></div>
-        </div>
-
-        <div class="preview-group">
-          <h4>Close-ups</h4>
-          <div class="image-grid preview-grid" id="closeupPreview"></div>
+        <div class="info-block">
+          <h4>Experiência simples</h4>
+          <p>
+            A ideia é reduzir atrito e facilitar testes rápidos com cliente final.
+          </p>
         </div>
       </section>
 
-      <section class="results-section">
-        <div class="section-header">
-          <h2>Resultados</h2>
-          <span id="resultStatus">Nenhuma imagem processada ainda.</span>
-        </div>
-        <div class="image-grid results-grid" id="results"></div>
+      <section class="final-cta-panel">
+        <h3>Pronto para testar?</h3>
+        <p>Entre na área de processamento e envie suas imagens.</p>
+        <a href="/app.html" class="primary-btn link-btn">Ir para o app</a>
       </section>
-
-      <div class="actions">
-        <button id="downloadBtn" class="secondary-btn" style="display:none;">
-          Baixar resultados
-        </button>
-      </div>
     </main>
-
-    <footer class="footer">
-      Onisis MVP — Pipeline de IA local · Qualidade de estúdio · Defeitos preservados
-    </footer>
   </div>
-
-  <script>
-    const inputs = {
-      exterior: document.getElementById("exteriorInput"),
-      interior: document.getElementById("interiorInput"),
-      closeup: document.getElementById("closeupInput"),
-    };
-
-    const previews = {
-      exterior: document.getElementById("exteriorPreview"),
-      interior: document.getElementById("interiorPreview"),
-      closeup: document.getElementById("closeupPreview"),
-    };
-
-    const processBtn = document.getElementById("processBtn");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const resultsDiv = document.getElementById("results");
-    const totalCounter = document.getElementById("totalCounter");
-    const summaryHint = document.getElementById("summaryHint");
-    const resultStatus = document.getElementById("resultStatus");
-
-    let files = {
-      exterior: [],
-      interior: [],
-      closeup: []
-    };
-
-    let generatedImages = [];
-
-    function getTotalFiles() {
-      return Object.values(files).reduce((acc, arr) => acc + arr.length, 0);
-    }
-
-    function updateState() {
-      const total = getTotalFiles();
-
-      totalCounter.textContent = `${total}/10`;
-
-      if (total === 0) {
-        processBtn.disabled = true;
-        processBtn.title = "";
-        summaryHint.textContent = "Selecione pelo menos 1 imagem para habilitar o processamento.";
-        return;
-      }
-
-      if (total > 10) {
-        processBtn.disabled = true;
-        processBtn.title = "Máximo de 10 fotos no total.";
-        summaryHint.textContent = "Você selecionou mais de 10 fotos. Remova algumas para continuar.";
-        return;
-      }
-
-      processBtn.disabled = false;
-      processBtn.title = "";
-      summaryHint.textContent = "Tudo certo. Clique em “Processar com IA” para gerar os resultados.";
-    }
-
-    function renderPreview(type) {
-      const container = previews[type];
-      container.innerHTML = "";
-
-      if (!files[type].length) {
-        container.innerHTML = '<div class="empty-state">Nenhuma imagem selecionada.</div>';
-        return;
-      }
-
-      files[type].forEach((file) => {
-        const card = document.createElement("div");
-        card.className = "thumb-card";
-
-        const img = document.createElement("img");
-        img.src = URL.createObjectURL(file);
-        img.alt = file.name;
-
-        const meta = document.createElement("div");
-        meta.className = "thumb-meta";
-        meta.textContent = file.name;
-
-        card.appendChild(img);
-        card.appendChild(meta);
-        container.appendChild(card);
-      });
-    }
-
-    function renderAllPreviews() {
-      renderPreview("exterior");
-      renderPreview("interior");
-      renderPreview("closeup");
-    }
-
-    Object.keys(inputs).forEach((type) => {
-      inputs[type].addEventListener("change", (e) => {
-        files[type] = Array.from(e.target.files || []);
-        renderPreview(type);
-        updateState();
-      });
-    });
-
-    processBtn.addEventListener("click", async () => {
-      const total = getTotalFiles();
-      if (total === 0 || total > 10) return;
-
-      const confirmed = window.confirm(`Processar ${total} imagem(ns)?`);
-      if (!confirmed) return;
-
-      const formData = new FormData();
-
-      Object.entries(files).forEach(([type, list]) => {
-        list.forEach((file) => formData.append(type, file));
-      });
-
-      processBtn.disabled = true;
-      downloadBtn.style.display = "none";
-      resultsDiv.innerHTML = "";
-      resultStatus.textContent = "Processando imagens...";
-
-      try {
-        const res = await fetch("/api/process-batch", {
-          method: "POST",
-          body: formData
-        });
-
-        if (!res.ok) {
-          const text = await res.text();
-          throw new Error(text || "Falha ao processar imagens.");
-        }
-
-        const data = await res.json();
-        generatedImages = data.images || [];
-
-        resultsDiv.innerHTML = "";
-
-        generatedImages.forEach((imgBase64, index) => {
-          const card = document.createElement("div");
-          card.className = "result-card";
-
-          const img = document.createElement("img");
-          img.src = `data:image/jpeg;base64,${imgBase64}`;
-          img.alt = `Resultado ${index + 1}`;
-
-          const meta = document.createElement("div");
-          meta.className = "thumb-meta";
-          meta.textContent = `Resultado ${index + 1}`;
-
-          card.appendChild(img);
-          card.appendChild(meta);
-          resultsDiv.appendChild(card);
-        });
-
-        resultStatus.textContent = `${generatedImages.length} imagem(ns) processada(s).`;
-
-        if (generatedImages.length) {
-          downloadBtn.style.display = "inline-flex";
-        }
-      } catch (error) {
-        console.error(error);
-        resultStatus.textContent = `Erro: ${error.message}`;
-      } finally {
-        updateState();
-      }
-    });
-
-    downloadBtn.addEventListener("click", () => {
-      generatedImages.forEach((img, i) => {
-        const a = document.createElement("a");
-        a.href = `data:image/jpeg;base64,${img}`;
-        a.download = `resultado_${i + 1}.jpg`;
-        a.click();
-      });
-    });
-
-    renderAllPreviews();
-    updateState();
-  </script>
 </body>
 </html>
