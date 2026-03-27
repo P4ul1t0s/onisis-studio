@@ -154,6 +154,10 @@
   </div>
 
   <script>
+    if (sessionStorage.getItem("onisis_auth") !== "ok") {
+      window.location.href = "/";
+    }
+
     const inputs = {
       exterior: document.getElementById("exteriorInput"),
       interior: document.getElementById("interiorInput"),
@@ -197,6 +201,32 @@
     };
 
     let generatedImages = [];
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const error = document.getElementById("errorMsg");
+
+      if (input === PASSWORD) {
+        document.getElementById("loginScreen").style.display = "none";
+      } else {
+        error.textContent = "Senha incorreta";
+      }
+    }
+
+    if (localStorage.getItem("auth") === "ok") {
+      document.getElementById("loginScreen").style.display = "none";
+    }
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+
+      if (input === PASSWORD) {
+        localStorage.setItem("auth", "ok");
+        document.getElementById("loginScreen").style.display = "none";
+      } else {
+        document.getElementById("errorMsg").textContent = "Senha incorreta";
+      }
+    }
 
     function getAllFiles() {
       return Object.values(files).flat();
@@ -314,8 +344,19 @@
       });
 
       try {
+        const accessKey = sessionStorage.getItem("onisis_access_key");
+
+        if (!accessKey) {
+          alert("Sessão expirada. Volte para a página inicial e entre novamente.");
+          window.location.href = "/";
+          return;
+        }
+
         const res = await fetch("/api/process-batch", {
           method: "POST",
+          headers: {
+            "x-access-key": accessKey
+          },
           body: formData
         });
 

@@ -37,6 +37,16 @@ app.post(
   ]),
   async (req, res) => {
     try {
+      const accessKey = req.headers["x-access-key"];
+
+      if (!process.env.APP_ACCESS_KEY) {
+        return res.status(500).send("APP_ACCESS_KEY não configurada.");
+      }
+
+      if (accessKey !== process.env.APP_ACCESS_KEY) {
+        return res.status(401).send("Acesso não autorizado.");
+      }
+
       const allFiles = [
         ...(req.files?.exterior || []),
         ...(req.files?.interior || []),
@@ -56,11 +66,11 @@ app.post(
       async function runModel(images, prompt) {
         const output = await replicate.run("black-forest-labs/flux-2-pro", {
           input: {
-          prompt,
-          input_images: images,
-          output_format: "jpg",
-          aspect_ratio: "4:3"
-        },
+            prompt,
+            input_images: images,
+            output_format: "jpg",
+            aspect_ratio: "4:3"
+          },
         });
 
         const file = Array.isArray(output) ? output[0] : output;
@@ -98,10 +108,7 @@ app.post(
       }
 
       for (const file of req.files?.exterior || []) {
-        const img = await runModel(
-          [file.buffer, background],
-          PROMPTS.exterior
-        );
+        const img = await runModel([file.buffer, background], PROMPTS.exterior);
         results.push(img.toString("base64"));
       }
 
@@ -122,6 +129,22 @@ app.post(
     }
   }
 );
+
+app.use(express.json());
+
+app.post("/api/login", (req, res) => {
+  const { password } = req.body;
+
+  if (!process.env.APP_ACCESS_KEY) {
+    return res.status(500).json({ error: "APP_ACCESS_KEY não configurada." });
+  }
+
+  if (password === process.env.APP_ACCESS_KEY) {
+    return res.json({ success: true });
+  }
+
+  return res.status(401).json({ success: false, error: "Senha incorreta." });
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

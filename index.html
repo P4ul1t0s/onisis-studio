@@ -8,6 +8,31 @@
 </head>
 <body>
   <div class="page-shell landing-page">
+    <div id="loginOverlay" class="login-overlay">
+      <div class="login-card">
+        <div class="brand login-brand">
+          <div class="brand-mark">O</div>
+          <div class="brand-text">
+            <h1>Onisis Studio AI</h1>
+            <p>Acesso restrito</p>
+          </div>
+        </div>
+
+        <h2>Entrar</h2>
+        <p>Digite a senha para acessar a demonstração.</p>
+
+        <input
+          type="password"
+          id="passwordInput"
+          class="login-input"
+          placeholder="Senha"
+        />
+
+        <button id="loginBtn" class="primary-btn full">Entrar</button>
+        <p id="loginError" class="login-error"></p>
+      </div>
+    </div>
+
     <header class="topbar minimal">
       <div class="brand">
         <div class="brand-mark">O</div>
@@ -30,5 +55,51 @@
       </section>
     </main>
   </div>
+
+  <script>
+    const loginOverlay = document.getElementById("loginOverlay");
+    const loginBtn = document.getElementById("loginBtn");
+    const passwordInput = document.getElementById("passwordInput");
+    const loginError = document.getElementById("loginError");
+
+    if (sessionStorage.getItem("onisis_auth") === "ok") {
+      loginOverlay.style.display = "none";
+    }
+
+    async function doLogin() {
+      loginError.textContent = "";
+
+      const password = passwordInput.value.trim();
+      if (!password) {
+        loginError.textContent = "Digite a senha.";
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ password })
+        });
+
+        if (!res.ok) {
+          throw new Error("Senha incorreta.");
+        }
+
+        sessionStorage.setItem("onisis_auth", "ok");
+        sessionStorage.setItem("onisis_access_key", password);
+        loginOverlay.style.display = "none";
+      } catch (err) {
+        loginError.textContent = "Senha incorreta.";
+      }
+    }
+
+    loginBtn.addEventListener("click", doLogin);
+    passwordInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") doLogin();
+    });
+  </script>
 </body>
 </html>
