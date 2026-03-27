@@ -4,40 +4,56 @@ You will receive two input images:
 2) a STUDIO BACKGROUND image
 
 Task:
-Place the exact car from the first image into the provided studio background as a realistic professional automotive studio photograph.
+Place the exact same car from the first image into the provided studio background and make the final result look like a real professional studio photograph.
 
-Hard preservation rules:
-- Keep the car exactly the same.
-- Preserve the original model, paint color, trim, proportions, shape, branding, body lines, wheel design, and all visible details.
-- Do not redesign, retouch, repair, restyle, reshape, or enhance the car.
-- Do not add or remove scratches, dents, dirt, badges, accessories, reflections, or imperfections.
-- Do not alter the studio background in any way.
-- The Onisis logo must remain clearly visible, sharp, and unchanged.
+IDENTITY LOCK:
+- The car must remain exactly the same vehicle.
+- Preserve the exact body shape, paint color, trim, badges, wheel design, tire design, glass, headlights, taillights, mirrors, handles, grille, and all visible details.
+- Do not redesign, restyle, repair, clean, enhance, or modify any part of the vehicle.
+- Do not change wheel model, wheel spoke pattern, rim size, tire profile, or tire sidewall details.
+- Do not change paint tone, metallic finish, reflections, or body panel shape.
+- Do not change license plate text, stickers, logos, decals, emblems, or any visible writing.
+- Do not rewrite, replace, invent, or stylize any text.
+- Any readable text, lettering, badge, plate, or marking must remain exactly as in the original image.
 
-Photographic realism requirements:
-- Match the studio lighting with physically plausible shadows and reflections.
-- Use realistic glossy automotive paint reflections and controlled specular highlights.
-- Ensure the car is naturally grounded on the studio floor with accurate contact shadows.
-- Maintain realistic perspective, scale, and lens consistency with the background.
-- Match color temperature, white balance, exposure, black levels, and contrast to the studio scene.
-- The final image must look like a real high-end automotive studio photograph.
+CONDITION LOCK:
+- Preserve the exact condition of the vehicle.
+- Do not add or remove scratches, dents, dirt, mud, dust, stains, wear, rust, or imperfections.
+- Do not exaggerate existing imperfections.
 
-Quality requirements:
-- Avoid any washed-out, hazy, faded, foggy, flat, or low-contrast appearance.
-- Avoid soft milky contrast or desaturated lighting.
-- Preserve clean blacks, realistic contrast, crisp edges, and clear reflections.
-- Use strong studio contrast and defined shadows.
+BACKGROUND RULES:
+- Keep the studio background unchanged.
+- Keep the Onisis logo exactly as it appears in the background image.
+- Do not copy the Onisis logo or name onto the car, plate, badges, or any other element.
+- The Onisis logo must remain only in the studio background where it already exists.
 
-Composition:
-- Keep the car centered on the studio floor axis.
-- Maintain consistent scale across outputs.
-- The car must occupy about 35% to 40% of the final image area.
-- Preserve the viewing angle from the source photo. Do not invent a new angle.
+LIGHTING AND REALISM:
+- Match the studio lighting with realistic reflections, shadows, and floor contact.
+- Use physically plausible reflections consistent with automotive studio photography.
+- Keep perspective, scale, and geometry natural and realistic.
+- Maintain neutral white balance, realistic contrast, and clean blacks.
+- Avoid washed-out, faded, foggy, or low-contrast output.
 
-Strict prohibitions:
-- Do not change the car’s structure, shape, branding, or visual identity.
-- Do not change the studio background.
-- Do not modify or obscure the Onisis logo.
+COMPOSITION:
+- Preserve the original viewing angle of the car.
+- Do not invent a new angle.
+- Keep the car centered naturally in the frame.
+- The final output must be a horizontal 4:3 image.
+- Extend or adapt only the background if needed to fit 4:3.
+- Do not crop or distort the car.
+
+STRICTLY FORBIDDEN:
+- Any change to car identity
+- Any change to wheels
+- Any change to paint color
+- Any rewritten text
+- Any replaced license plate text
+- Any copied Onisis branding onto the car
+- Any geometry changes
+- Any additional dirt or damage
+
+Output:
+A realistic automotive studio photograph of the exact same car, with identical identity, identical text, identical condition, and unchanged background branding.
 `.trim();
 
 export const INTERIOR_PROMPT = `
@@ -83,48 +99,52 @@ export const CLOSEUP_PROMPT = `
 You will receive a close-up image of a car detail that is still attached to the vehicle.
 
 Task:
-Transform this image into a professional automotive studio close-up while preserving the exact original condition of the object.
+Transform this image into a realistic professional automotive studio close-up while preserving the exact original detail, condition, and composition.
 
-CRITICAL CONDITION LOCK:
-- The condition of the object must remain EXACTLY the same as the input.
-- Do not add any new elements or details.
-- Do not introduce dirt, mud, dust, stains, rust, scratches, or wear.
+IDENTITY AND CONDITION LOCK:
+- Keep the subject exactly as it appears in the original image.
+- Preserve exact shape, color, material, texture, branding, reflections, lettering, and all visible details.
+- Keep the part attached to the vehicle.
+- Do not redesign, repair, replace, clean, enhance, or modify anything.
+- Preserve the exact original condition.
+
+CONTAMINATION RULES:
+- Do not add any dirt, mud, dust, stains, grease, rust, grime, fingerprints, scratches, or wear.
 - Do not exaggerate any existing imperfections.
-- Do not change surface cleanliness in any way.
-- The output must match the original condition pixel-wise in terms of cleanliness.
+- Do not create an off-road, dirty, used, weathered, dusty, or muddy appearance.
+- Do not add environmental residue of any kind.
+- The cleanliness level must remain identical to the original input.
 
-Preservation:
-- Keep shape, color, materials, reflections, and details identical.
-- Keep the object attached to the vehicle.
-- Do not redesign, enhance, or modify anything.
+TEXT AND DETAIL LOCK:
+- Do not rewrite or alter any text, symbols, labels, buttons, screen content, logos, or markings.
+- Do not invent missing letters or replace existing lettering.
+- Any visible text must remain exactly unchanged.
 
-Composition:
-- Preserve original framing, crop, angle, and perspective.
-- Do not move, isolate, extract, or reposition any part.
+COMPOSITION:
+- Preserve original framing, crop, camera angle, zoom, and perspective.
+- Do not move, isolate, extract, detach, rotate, or reposition the part.
+- Do not turn this into a spare-part catalog image.
 
-Background:
-- Replace the background with a clean white studio environment.
+BACKGROUND AND STYLE:
+- Replace or neutralize the original environment so the image feels like it was photographed in a clean white studio.
 - Keep transitions subtle and natural.
 - Do not create a floating object.
-- Do not invent missing geometry.
+- Do not invent missing geometry or hidden surfaces.
 
-Lighting:
+LIGHTING:
 - Apply soft white studio lighting.
-- Improve reflections and highlights while preserving realism.
-- Keep materials physically accurate.
-
-Style:
-- Clean automotive studio photography.
-- Neutral white balance.
-- Crisp, sharp, realistic.
-- CLEAN presentation (no dirt, no grime, no environmental effects).
+- Use realistic highlights and reflections consistent with premium automotive detail photography.
+- Maintain natural depth and realistic materials.
+- Keep contrast clean and neutral without overprocessing.
 
 STRICTLY FORBIDDEN:
-- Any new dirt, mud, dust, stains, or damage.
-- Any environmental storytelling (off-road, road dust, etc).
-- Any change in cleanliness level.
-- Any added texture that was not present in the original.
+- Any added dirt, mud, dust, grime, or contamination
+- Any rewritten text
+- Any detached or floating object
+- Any geometry change
+- Any fake replacement-part look
+- Any off-road or dirty visual storytelling
 
 Output:
-A clean studio close-up with identical condition and no added imperfections.
+A clean, realistic automotive studio close-up with identical condition, identical text, identical geometry, and no added contamination.
 `.trim();
