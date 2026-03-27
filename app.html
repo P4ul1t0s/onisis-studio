@@ -7,126 +7,148 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <div class="site-shell">
-    <header class="app-topbar">
+  <div class="page-shell app-page">
+    <header class="topbar">
       <div class="brand">
         <div class="brand-mark">O</div>
-        <div>
+        <div class="brand-text">
           <h1>Onisis Studio AI</h1>
           <p>Área de processamento</p>
         </div>
       </div>
 
-      <div class="topbar-actions">
-        <a href="/" class="secondary-btn link-btn compact-btn">Voltar</a>
-      </div>
+      <a href="/" class="ghost-btn">Voltar</a>
     </header>
 
     <main class="app-main">
-      <section class="app-intro-card">
-        <div>
-          <h2>Gerar imagens de estúdio</h2>
-          <p>
-            Envie as fotos nas categorias corretas e processe tudo em lote com uma interface simples.
-          </p>
+      <section class="app-panel" id="inputSection">
+        <div class="panel-head">
+          <h2>Enviar imagens</h2>
+          <p>Selecione até 10 imagens no total.</p>
         </div>
-        <div class="app-intro-note">
-          O processamento pode levar cerca de <strong>15 a 20 segundos por imagem</strong>.
+
+        <div class="upload-grid">
+          <label class="upload-card" for="exteriorInput">
+            <div class="upload-icon">🚘</div>
+            <h3>Externas</h3>
+            <p>Fotos do veículo por fora</p>
+            <span class="upload-count" id="exteriorCount">0 imagens</span>
+            <input
+              type="file"
+              id="exteriorInput"
+              accept="image/jpeg,image/png,image/webp"
+              multiple
+              hidden
+            />
+          </label>
+
+          <label class="upload-card" for="interiorInput">
+            <div class="upload-icon">🪑</div>
+            <h3>Internas</h3>
+            <p>Painel, bancos e cabine</p>
+            <span class="upload-count" id="interiorCount">0 imagens</span>
+            <input
+              type="file"
+              id="interiorInput"
+              accept="image/jpeg,image/png,image/webp"
+              multiple
+              hidden
+            />
+          </label>
+
+          <label class="upload-card" for="closeupInput">
+            <div class="upload-icon">🔎</div>
+            <h3>Close-ups</h3>
+            <p>Rodas, faróis e detalhes</p>
+            <span class="upload-count" id="closeupCount">0 imagens</span>
+            <input
+              type="file"
+              id="closeupInput"
+              accept="image/jpeg,image/png,image/webp"
+              multiple
+              hidden
+            />
+          </label>
         </div>
-      </section>
 
-      <section class="summary-card">
-        <div class="summary-item">
-          <span>Total selecionado</span>
-          <strong id="totalCounter">0 / 10</strong>
+        <div class="quick-info">
+          <div class="quick-pill">
+            <span>Total</span>
+            <strong id="totalCounter">0 / 10</strong>
+          </div>
+          <div class="quick-pill">
+            <span>Tempo estimado</span>
+            <strong id="timeEstimate">—</strong>
+          </div>
         </div>
-        <div class="summary-item">
-          <span>Tempo estimado</span>
-          <strong id="timeEstimate">—</strong>
-        </div>
-        <div class="summary-item summary-message" id="summaryMessage">
-          Selecione pelo menos 1 imagem para começar.
-        </div>
-      </section>
 
-      <section class="upload-grid">
-        <label class="upload-card" for="exteriorInput">
-          <div class="upload-icon">🚘</div>
-          <h3>Fotos Externas</h3>
-          <p>Envie imagens do veículo por fora.</p>
-          <span class="upload-count" id="exteriorCount">0 imagens</span>
-          <input type="file" id="exteriorInput" accept="image/jpeg,image/png,image/webp" multiple hidden />
-        </label>
+        <p class="helper-text" id="helperText">
+          Selecione pelo menos 1 imagem para continuar.
+        </p>
 
-        <label class="upload-card" for="interiorInput">
-          <div class="upload-icon">🪑</div>
-          <h3>Fotos Internas</h3>
-          <p>Envie painel, bancos, cabine e interior.</p>
-          <span class="upload-count" id="interiorCount">0 imagens</span>
-          <input type="file" id="interiorInput" accept="image/jpeg,image/png,image/webp" multiple hidden />
-        </label>
-
-        <label class="upload-card" for="closeupInput">
-          <div class="upload-icon">🔍</div>
-          <h3>Close-ups</h3>
-          <p>Envie detalhes e acabamentos do veículo.</p>
-          <span class="upload-count" id="closeupCount">0 imagens</span>
-          <input type="file" id="closeupInput" accept="image/jpeg,image/png,image/webp" multiple hidden />
-        </label>
-      </section>
-
-      <section class="action-card">
-        <button id="processBtn" class="primary-btn" disabled title="">
-          Gerar imagens de estúdio
+        <button id="generateBtn" class="primary-btn full" disabled>
+          Gerar imagens
         </button>
-        <button id="downloadBtn" class="secondary-btn" style="display:none;">
-          Baixar resultados
-        </button>
       </section>
 
-      <section class="content-card">
-        <div class="section-head">
-          <h2>Prévia das imagens selecionadas</h2>
-          <span>Revise antes de processar</span>
+      <section class="preview-panel" id="previewSection">
+        <div class="panel-head inline">
+          <h2>Prévia</h2>
+          <p>Revise antes de processar</p>
         </div>
 
-        <div class="preview-block">
+        <div class="preview-group">
           <h4>Externas</h4>
-          <div class="preview-grid" id="exteriorPreview">
+          <div class="thumb-grid" id="exteriorPreview">
             <div class="empty-state">Nenhuma imagem selecionada.</div>
           </div>
         </div>
 
-        <div class="preview-block">
+        <div class="preview-group">
           <h4>Internas</h4>
-          <div class="preview-grid" id="interiorPreview">
+          <div class="thumb-grid" id="interiorPreview">
             <div class="empty-state">Nenhuma imagem selecionada.</div>
           </div>
         </div>
 
-        <div class="preview-block">
+        <div class="preview-group">
           <h4>Close-ups</h4>
-          <div class="preview-grid" id="closeupPreview">
+          <div class="thumb-grid" id="closeupPreview">
             <div class="empty-state">Nenhuma imagem selecionada.</div>
           </div>
         </div>
       </section>
 
-      <section class="content-card">
-        <div class="section-head">
-          <h2>Resultados</h2>
-          <span id="resultStatus">Nenhuma imagem processada ainda.</span>
-        </div>
-
-        <div class="loading-box" id="loadingBox" style="display:none;">
+      <section class="progress-panel hidden" id="loadingSection">
+        <div class="progress-top">
           <div class="spinner"></div>
-          <div>
-            <strong>Processando imagens...</strong>
-            <p id="loadingText">Isso pode levar alguns instantes.</p>
+          <div class="progress-copy">
+            <h3>Gerando imagens...</h3>
+            <p id="progressText">0 / 0</p>
           </div>
         </div>
 
-        <div class="results-grid" id="results"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <p class="progress-note" id="progressNote">
+          Isso pode levar alguns instantes.
+        </p>
+      </section>
+
+      <section class="results-panel hidden" id="resultSection">
+        <div class="panel-head inline">
+          <h2>Resultados</h2>
+          <p>Imagens geradas com sucesso</p>
+        </div>
+
+        <div class="result-grid" id="results"></div>
+
+        <div class="result-actions">
+          <button id="downloadBtn" class="primary-btn">Baixar resultados</button>
+          <button id="resetBtn" class="ghost-btn solid">Gerar mais imagens</button>
+        </div>
       </section>
     </main>
   </div>
@@ -150,15 +172,23 @@
       closeup: document.getElementById("closeupCount"),
     };
 
-    const processBtn = document.getElementById("processBtn");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const resultsDiv = document.getElementById("results");
     const totalCounter = document.getElementById("totalCounter");
     const timeEstimate = document.getElementById("timeEstimate");
-    const summaryMessage = document.getElementById("summaryMessage");
-    const resultStatus = document.getElementById("resultStatus");
-    const loadingBox = document.getElementById("loadingBox");
-    const loadingText = document.getElementById("loadingText");
+    const helperText = document.getElementById("helperText");
+
+    const generateBtn = document.getElementById("generateBtn");
+    const inputSection = document.getElementById("inputSection");
+    const previewSection = document.getElementById("previewSection");
+    const loadingSection = document.getElementById("loadingSection");
+    const resultSection = document.getElementById("resultSection");
+
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    const progressNote = document.getElementById("progressNote");
+
+    const resultsDiv = document.getElementById("results");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
     let files = {
       exterior: [],
@@ -168,73 +198,37 @@
 
     let generatedImages = [];
 
-    function getTotalFiles() {
-      return Object.values(files).reduce((acc, arr) => acc + arr.length, 0);
+    function getAllFiles() {
+      return Object.values(files).flat();
     }
 
     function formatEstimate(total) {
-      if (total <= 0) return "—";
-      const minSeconds = total * 15;
-      const maxSeconds = total * 20;
+      if (!total) return "—";
+      const min = total * 15;
+      const max = total * 20;
 
-      if (maxSeconds < 60) {
-        return `${minSeconds}-${maxSeconds}s`;
-      }
+      if (max < 60) return `${min}-${max}s`;
 
-      const minMinutes = Math.floor(minSeconds / 60);
-      const maxMinutes = Math.ceil(maxSeconds / 60);
-
-      if (minMinutes === maxMinutes) {
-        return `~${maxMinutes} min`;
-      }
-
-      return `${minMinutes}-${maxMinutes} min`;
-    }
-
-    function updateState() {
-      const total = getTotalFiles();
-
-      totalCounter.textContent = `${total} / 10`;
-      timeEstimate.textContent = formatEstimate(total);
-
-      counts.exterior.textContent = `${files.exterior.length} imagem(ns)`;
-      counts.interior.textContent = `${files.interior.length} imagem(ns)`;
-      counts.closeup.textContent = `${files.closeup.length} imagem(ns)`;
-
-      if (total === 0) {
-        processBtn.disabled = true;
-        processBtn.title = "";
-        summaryMessage.textContent = "Selecione pelo menos 1 imagem para começar.";
-        return;
-      }
-
-      if (total > 10) {
-        processBtn.disabled = true;
-        processBtn.title = "O limite máximo é de 10 fotos no total.";
-        summaryMessage.textContent = "Você selecionou mais de 10 fotos. Remova algumas para continuar.";
-        return;
-      }
-
-      processBtn.disabled = false;
-      processBtn.title = "";
-      summaryMessage.textContent = "Tudo certo. Revise as imagens e clique em gerar.";
+      const minM = Math.floor(min / 60);
+      const maxM = Math.ceil(max / 60);
+      return minM === maxM ? `~${maxM} min` : `${minM}-${maxM} min`;
     }
 
     function createThumb(file) {
-      const card = document.createElement("div");
-      card.className = "thumb-card";
+      const item = document.createElement("div");
+      item.className = "thumb-card";
 
       const img = document.createElement("img");
       img.src = URL.createObjectURL(file);
       img.alt = file.name;
 
-      const meta = document.createElement("div");
-      meta.className = "thumb-meta";
-      meta.textContent = file.name;
+      const name = document.createElement("div");
+      name.className = "thumb-name";
+      name.textContent = file.name;
 
-      card.appendChild(img);
-      card.appendChild(meta);
-      return card;
+      item.appendChild(img);
+      item.appendChild(name);
+      return item;
     }
 
     function renderPreview(type) {
@@ -246,12 +240,38 @@
         return;
       }
 
-      files[type].forEach((file) => {
+      files[type].forEach(file => {
         container.appendChild(createThumb(file));
       });
     }
 
-    Object.keys(inputs).forEach((type) => {
+    function updateState() {
+      const total = getAllFiles().length;
+
+      counts.exterior.textContent = `${files.exterior.length} imagens`;
+      counts.interior.textContent = `${files.interior.length} imagens`;
+      counts.closeup.textContent = `${files.closeup.length} imagens`;
+
+      totalCounter.textContent = `${total} / 10`;
+      timeEstimate.textContent = formatEstimate(total);
+
+      if (total === 0) {
+        generateBtn.disabled = true;
+        helperText.textContent = "Selecione pelo menos 1 imagem para continuar.";
+        return;
+      }
+
+      if (total > 10) {
+        generateBtn.disabled = true;
+        helperText.textContent = "O limite máximo é de 10 imagens no total.";
+        return;
+      }
+
+      generateBtn.disabled = false;
+      helperText.textContent = "Tudo certo. Clique em gerar para iniciar o processamento.";
+    }
+
+    Object.keys(inputs).forEach(type => {
       inputs[type].addEventListener("change", (e) => {
         files[type] = Array.from(e.target.files || []);
         renderPreview(type);
@@ -259,29 +279,39 @@
       });
     });
 
-    processBtn.addEventListener("click", async () => {
-      const total = getTotalFiles();
-      if (total === 0 || total > 10) return;
+    generateBtn.addEventListener("click", async () => {
+      const total = getAllFiles().length;
+      if (!total || total > 10) return;
 
-      const estimate = formatEstimate(total);
-      const confirmed = window.confirm(
-        `Você quer processar ${total} foto(s)?\n\nEssa ação pode levar cerca de ${estimate}.`
+      const confirmed = confirm(
+        `Processar ${total} imagem(ns)?\n\nTempo estimado: ${formatEstimate(total)}.`
       );
 
       if (!confirmed) return;
 
+      inputSection.classList.add("hidden");
+      previewSection.classList.add("hidden");
+      loadingSection.classList.remove("hidden");
+      resultSection.classList.add("hidden");
+
+      progressText.textContent = `0 / ${total}`;
+      progressFill.style.width = "0%";
+      progressNote.textContent = `Tempo estimado: ${formatEstimate(total)}`;
+
+      let current = 0;
+
+      const interval = setInterval(() => {
+        if (current < total - 1) {
+          current++;
+          progressText.textContent = `${current} / ${total}`;
+          progressFill.style.width = `${(current / total) * 100}%`;
+        }
+      }, 1500);
+
       const formData = new FormData();
-
       Object.entries(files).forEach(([type, list]) => {
-        list.forEach((file) => formData.append(type, file));
+        list.forEach(file => formData.append(type, file));
       });
-
-      processBtn.disabled = true;
-      downloadBtn.style.display = "none";
-      resultsDiv.innerHTML = "";
-      loadingBox.style.display = "flex";
-      resultStatus.textContent = "Processando imagens...";
-      loadingText.textContent = `Tempo estimado: ${estimate}. Isso pode levar alguns instantes.`;
 
       try {
         const res = await fetch("/api/process-batch", {
@@ -291,42 +321,42 @@
 
         if (!res.ok) {
           const text = await res.text();
-          throw new Error(text || "Falha ao processar imagens.");
+          throw new Error(text || "Erro ao processar imagens.");
         }
 
         const data = await res.json();
         generatedImages = data.images || [];
 
+        clearInterval(interval);
+        progressText.textContent = `${total} / ${total}`;
+        progressFill.style.width = "100%";
+        progressNote.textContent = "Finalizando...";
+
         resultsDiv.innerHTML = "";
 
-        generatedImages.forEach((imgBase64, index) => {
+        generatedImages.forEach((img, i) => {
           const card = document.createElement("div");
           card.className = "result-card";
 
-          const img = document.createElement("img");
-          img.src = `data:image/jpeg;base64,${imgBase64}`;
-          img.alt = `Resultado ${index + 1}`;
+          const image = document.createElement("img");
+          image.src = `data:image/jpeg;base64,${img}`;
+          image.alt = `Resultado ${i + 1}`;
 
-          const meta = document.createElement("div");
-          meta.className = "thumb-meta";
-          meta.textContent = `Resultado ${index + 1}`;
-
-          card.appendChild(img);
-          card.appendChild(meta);
+          card.appendChild(image);
           resultsDiv.appendChild(card);
         });
 
-        resultStatus.textContent = `${generatedImages.length} imagem(ns) processada(s).`;
+        setTimeout(() => {
+          loadingSection.classList.add("hidden");
+          resultSection.classList.remove("hidden");
+        }, 700);
 
-        if (generatedImages.length) {
-          downloadBtn.style.display = "inline-flex";
-        }
       } catch (error) {
-        console.error(error);
-        resultStatus.textContent = `Erro: ${error.message}`;
-      } finally {
-        loadingBox.style.display = "none";
-        updateState();
+        clearInterval(interval);
+        alert(error.message || "Erro ao processar.");
+        loadingSection.classList.add("hidden");
+        inputSection.classList.remove("hidden");
+        previewSection.classList.remove("hidden");
       }
     });
 
@@ -337,6 +367,10 @@
         a.download = `resultado_${i + 1}.jpg`;
         a.click();
       });
+    });
+
+    resetBtn.addEventListener("click", () => {
+      location.reload();
     });
 
     updateState();
